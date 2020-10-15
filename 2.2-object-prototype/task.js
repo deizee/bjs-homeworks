@@ -36,31 +36,29 @@ function getAverageMark(marks) {
 function checkBirthday(birthday) {
     // первый способ (предлагаемый в задаче)
 
-    // const now = new Date();
-    // const b = new Date(birthday);
-    // const nowUT = +now;
-    // const birthdayUT = +b;
-    // const diff = nowUT - birthdayUT;
-    // const age = diff / 31556952000;   // здесь неточность, потому что делим на среднее количество миллисекунд в году (вне зависимости от того, високосный год или нет)
-    // return age >= 18;                 // погрешность составляет ~2 дня
+    const now = new Date();
+    const b = new Date(birthday);
+    const diff = (+now) - (+b);
+    const age = diff / 31556952000;   // здесь неточность, потому что делим на среднее количество миллисекунд в году (вне зависимости от того, високосный год или нет)
+    return age >= 18;                 // погрешность составляет ~2 дня
     
 
     //=======================================================
     // второй способ (более точный, не зависит от високосных годов)
 
-    const now = new Date();
-    const b = new Date(birthday);
+    // const now = new Date();
+    // const b = new Date(birthday);
 
-    const nowYear = now.getFullYear();      // получаем сегодняшний год
-    const birthdayYear = b.getFullYear();   // получаем год рождения
-    const age = nowYear - birthdayYear;     // считаем разницу в годах
+    // const nowYear = now.getFullYear();      // получаем сегодняшний год
+    // const birthdayYear = b.getFullYear();   // получаем год рождения
+    // const age = nowYear - birthdayYear;     // считаем разницу в годах
     
-    const nowDate = now.setFullYear(1970);        // заменяем год на 1970 и считаем сколько миллисекунд прошло с начала года до "сегодняшней даты" (число и месяц)
-    const birthdayDate = b.setFullYear(1970);     // заменяем год на 1970 и считаем сколько миллисекунд прошло с начала года до "даты рождения"
+    // const nowDate = now.setFullYear(1970);        // заменяем год на 1970 и считаем сколько миллисекунд прошло с начала года до "сегодняшней даты" (число и месяц)
+    // const birthdayDate = b.setFullYear(1970);     // заменяем год на 1970 и считаем сколько миллисекунд прошло с начала года до "даты рождения"
     
-    if (nowDate < birthdayDate) {
-        age = age - 1;                    // если "дата рождения" больше текущей даты, значит День рождения еще не наступил, поэтому вычитаем из возраста 1
-    }
+    // if (nowDate < birthdayDate) {
+    //     age = age - 1;                    // если "дата рождения" больше текущей даты, значит День рождения еще не наступил, поэтому вычитаем из возраста 1
+    // }
 
-    return age >= 18;      // возвращает true, если условие выполняется, и false в противном случае
+    // return age >= 18;      // возвращает true, если условие выполняется, и false в противном случае
 }

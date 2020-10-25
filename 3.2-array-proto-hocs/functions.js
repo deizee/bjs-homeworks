@@ -32,10 +32,7 @@ function getReliableWeaponsNames(durability) {
 //console.log(getReliableWeaponsNames(300));
 
 function getTotalDamage() {
-    return weapons.reduce((totalDamage, weapon) => {
-        totalDamage += weapon.attack;
-        return totalDamage;
-    }, 0)
+    return weapons.reduce((totalDamage, weapon) => totalDamage += weapon.attack, 0)
 }
 //console.log(getTotalDamage());
 
@@ -68,7 +65,7 @@ function sum(...args) {
 }
 
 function compareArrays(arr1, arr2) {
-    return (arr1.every((el, i) => el === arr2[i]) && arr2.every((el, i) => el === arr1[i]));
+    return (arr1.length === arr1.length && arr2.every((el, i) => el === arr1[i]));
 }
 
 //console.log(compareArrays([8, 9], [6])); // false, разные значения
@@ -86,10 +83,14 @@ function memorize(fn, limit) {
         counter++;
         let element = memory.find( el => compareArrays(el.args, args) );
 
-        if (element) return element.result;
+        if (element) {
+            return element.result;
+        }
 
         const result = fn(...args);
-        if (counter > limit) memory.shift();
+        if (counter > limit) {
+            memory.shift();
+        }
         memory.push({args, result});
         return result;
     }
@@ -107,8 +108,8 @@ const arr = [ [1,2,3], [1,2], [1,2,3], [1,2], [9,5,2,4] ];
 
 function testCase(testFunction, timer) {
     console.time(timer);
-    for (let i = 0; i < 100; i++) {
-           arr.forEach(el => testFunction(el) );
+    for (let i = 0; i < 10; i++) {
+           arr.forEach(el => testFunction(...el) );
     }
     console.timeEnd(timer);
 }

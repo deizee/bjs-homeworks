@@ -84,7 +84,7 @@ function testCase() {
     a.printAlarms();
     a.removeClock(2);
     a.printAlarms();
-    //setTimeout(a.clearAlarms(), 120000);
+    //setTimeout(a.clearAlarms, 120000);
     //setTimeout(a.stop, 60000);
 }
 
